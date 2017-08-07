@@ -1,0 +1,27 @@
+// 清除浮动
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+// use mixin
+.container {
+  @include clearfix();
+}
+// 当有**类名 激活
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+// use .active.foo
+.foo {
+  @include when-inside('.active') {
+    animation: fadeIn 0.3s 1s forwards;
+  }
+}
